@@ -8,17 +8,17 @@ import glob
 from PIL import Image, ImageDraw
 import numpy as np
 import pickle
-#Загружаем подготовленную базу лиц учеников (Настраивается с помощью файлаdump_dataset.py
+#Загружаем подготовленную базу лиц учеников (Настраивается с помощью файла dump_dataset.py
 with open('dataset_faces.dat', 'rb') as f:
-    Polina = pickle.load(f)
+    Pol_Kan = pickle.load(f)
 #Загружаем фотографию класса для распознавания
-file_name = input('Введите имя файла>>')+'.jpg'
-pic = face_recognition.load_image_file(file_name)
+file_name = input('Введите имя файла>>')
+pic = face_recognition.load_image_file(file_name + '.jpg')
 #-----------------------------------------------
 #pic_enc = face_recognition.face_encodings(pic)[0]
 #Создаём списки учащихся и преобразований
-users = list(Polina.keys())
-encodings = [Polina[kk] for kk in Polina.keys()]
+users = list(Pol_Kan.keys())
+encodings = [Pol_Kan[kk] for kk in Pol_Kan.keys()]
 face_encodings = face_recognition.face_encodings(pic)
 pupils = set()
 #Распознавание каждого лица на фото
@@ -81,6 +81,6 @@ if input('Хотите ли вы вывести изображение?>>')=='y'
     del draw
     #Вывыод изображения
     pil_image.show()
-if input('Хотите ли вы сохранить размеченое изображение?>>')=='y':
-    #Сохранение изображения
-    pil_image.save(file_name+'with_boxes'+'.jpg')
+    if input('Хотите ли вы сохранить размеченое изображение?>>')=='y':
+        #Сохранение изображения
+        pil_image.save(file_name+'.with_boxes'+'.jpg')
