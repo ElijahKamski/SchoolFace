@@ -19,5 +19,5 @@ for kk in Polina.keys():
         print("I wasn't able to locate any faces in at least one of the images. Check the image files. Aborting...")
         continue
 print(kara)
-with open('dataset_faces.dat', 'ab') as f:
+with open('dataset_faces.dat', 'wb') as f:
     pickle.dump(kara, f)

@@ -21,5 +21,5 @@ for kk in Polina.keys():
     except IndexError:
         print("I wasn't able to locate any faces in at least one of the images. Check the image files. Aborting...")
         continue
-with open('dataset_faces.dat', 'ab') as f:
+with open('dataset_faces.dat', 'wb') as f:
     pickle.dump(Polina, f)
